@@ -2,6 +2,7 @@ package com.example.android.randomuserapp.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,9 +31,10 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
         userName.setText(sb.toString());
         Picasso.with(context)
                 .load(user.getPicture().getThumbnail())
-                .fit()
-                .centerCrop()
+                .resize(500, 500)
+                .centerInside()
                 .into(userThumb);
+        Log.d("thumbnail", "userthumb" + user.getPicture().getMedium());
     }
 
 }
