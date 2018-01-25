@@ -39,6 +39,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserViewHolder> {
     public void onBindViewHolder(UserViewHolder holder, int position) {
         User user = userList.get(position);
         holder.onBind(user, context);
+        holder.itemView.setTag(user.getEmail());
         holder.itemView.setOnClickListener(userDetailClick);
     }
 
