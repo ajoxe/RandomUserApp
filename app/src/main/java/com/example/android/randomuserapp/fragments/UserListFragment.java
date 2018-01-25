@@ -25,6 +25,7 @@ public class UserListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_user_list, container, false);
+
         return rootView;
     }
 
