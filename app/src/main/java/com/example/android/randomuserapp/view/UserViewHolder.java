@@ -30,7 +30,7 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
         sb.append(" ").append(user.getName().getLast());
         userName.setText(sb.toString());
         Picasso.with(context)
-                .load(user.getPicture().getThumbnail())
+                .load(user.getPicture().getLarge())
                 .resize(500, 500)
                 .centerInside()
                 .into(userThumb);

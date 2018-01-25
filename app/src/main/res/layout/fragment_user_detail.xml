@@ -5,15 +5,16 @@
     android:orientation="vertical"
     tools:context="com.example.android.randomuserapp.fragments.UserDetailFragment">
 
-    <ImageView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ImageView
         android:id="@+id/user_detail_image_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:src="@tools:sample/avatars"/>
-   <ScrollView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       >
+
        <LinearLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent"

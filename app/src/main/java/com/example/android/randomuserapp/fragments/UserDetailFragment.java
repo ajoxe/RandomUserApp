@@ -47,8 +47,8 @@ public class UserDetailFragment extends Fragment {
 
         Picasso.with(context)
                 .load(detailUser.getPicture().getLarge())
-                .resize(500, 500)
-                .centerInside()
+                .resize(800, 800)
+                .centerCrop()
                 .into(userPic);
         String fullName = detailUser.getName().getTitle();
         StringBuilder sbName = new StringBuilder(fullName);
