@@ -4,6 +4,8 @@ package com.example.android.randomuserapp.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.android.randomuserapp.R;
 import com.example.android.randomuserapp.RetrofitService;
+import com.example.android.randomuserapp.UserUtility;
 import com.example.android.randomuserapp.controller.UserAdapter;
 import com.example.android.randomuserapp.model.User;
 import com.example.android.randomuserapp.model.UserResults;
@@ -61,8 +64,8 @@ public class UserListFragment extends Fragment {
 
     public void setRecyclerView(){
         recyclerView = (RecyclerView) rootView.findViewById(R.id.user_list_recycler_view);
-        userAdapter = new UserAdapter(userList, detailClickListener, context);
         setDetailClickListener();
+        userAdapter = new UserAdapter(userList, detailClickListener, context);
         recyclerView.setAdapter(userAdapter);
         layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
@@ -74,9 +77,17 @@ public class UserListFragment extends Fragment {
         detailClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = v.getTag().toString();
                 UserDetailFragment userDetailFragment = new UserDetailFragment();
-
-
+                UserUtility utility = new UserUtility();
+                User user = utility.getModelFromMap(utility.buildMap(userList), email);
+                userDetailFragment.updateUser(user);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main_fragment_container, userDetailFragment);
+                fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+                fragmentTransaction.addToBackStack("next");
+                fragmentTransaction.commit();
             }
         };
     }
