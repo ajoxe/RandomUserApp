@@ -59,9 +59,9 @@ public class UserDetailFragment extends Fragment {
 
         String fullLocation = detailUser.getLocation().getStreet();
         StringBuilder sbLocation = new StringBuilder(fullLocation);
-        sbName.append(" ").append(detailUser.getLocation().getCity());
-        sbName.append(" ").append(detailUser.getLocation().getState());
-        sbName.append(" ").append(detailUser.getLocation().getPostcode());
+        sbLocation.append(" ").append(detailUser.getLocation().getCity());
+        sbLocation.append(" ").append(detailUser.getLocation().getState());
+        sbLocation.append(" ").append(String.valueOf(detailUser.getLocation().getPostcode()));
 
         location.setText(sbLocation.toString());
         email.setText(detailUser.getEmail());
